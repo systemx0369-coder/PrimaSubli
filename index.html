@@ -1,0 +1,438 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Prisma Sublim - Diseño & Color</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Poppins',sans-serif;
+}
+
+body{
+    min-height:100vh;
+    background:linear-gradient(135deg,#ff7a18,#ff3c00,#ffb347);
+    background-size:400% 400%;
+    animation:bgMove 12s ease infinite;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    color:white;
+    overflow:hidden;
+}
+
+/* Fondo animado */
+.bubbles{
+    position:fixed;
+    top:0;left:0;
+    width:100%;
+    height:100%;
+    z-index:-1;
+}
+
+.bubbles span{
+    position:absolute;
+    display:block;
+    width:20px;
+    height:20px;
+    background:rgba(255,255,255,0.15);
+    border-radius:50%;
+    animation:float 15s linear infinite;
+}
+
+.bubbles span:nth-child(odd){
+    background:rgba(255,255,255,0.25);
+}
+
+@keyframes float{
+    0%{transform:translateY(100vh) scale(0);}
+    100%{transform:translateY(-10vh) scale(1.2);}
+}
+
+@keyframes bgMove{
+    0%{background-position:0% 50%;}
+    50%{background-position:100% 50%;}
+    100%{background-position:0% 50%;}
+}
+
+.container{
+    width:100%;
+    max-width:420px;
+    padding:25px;
+    text-align:center;
+    background:rgba(0,0,0,.25);
+    border-radius:25px;
+    backdrop-filter:blur(8px);
+    box-shadow:0 10px 30px rgba(0,0,0,.4);
+}
+
+/* Logo */
+.logo{
+    width:96px;
+    height:96px;
+    margin:auto;
+    border-radius:16px;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    overflow:hidden;
+    box-shadow:0 8px 20px rgba(0,0,0,.4);
+    animation:pulse 2s infinite;
+    background:linear-gradient(180deg,rgba(255,255,255,0.06),rgba(255,255,255,0.02));
+}
+
+.logo img{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    display:block;
+    border-radius:inherit;
+}
+
+@keyframes pulse{
+    0%{transform:scale(1);}
+    50%{transform:scale(1.05);}
+    100%{transform:scale(1);}
+}
+
+h1{
+    margin-top:15px;
+    font-size:2.2rem;
+}
+
+.subtitle{
+    font-size:1rem;
+    margin-bottom:15px;
+    opacity:.9;
+}
+
+/* Botones */
+.link-btn{
+    width:100%;
+    background:white;
+    color:#333;
+    text-decoration:none;
+    padding:15px;
+    margin:12px 0;
+    border-radius:50px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    gap:10px;
+    font-weight:600;
+    font-size:1rem;
+    transition:.3s;
+    box-shadow:0 5px 15px rgba(0,0,0,.25);
+}
+
+.link-btn:hover{
+    transform:scale(1.08);
+    background:#fff3e8;
+}
+
+.whatsapp{color:#25D366;}
+.instagram{color:#E1306C;}
+.facebook{color:#1877F2;}
+
+/* Productos */
+.products{
+    margin:25px 0;
+    background:rgba(255,255,255,.15);
+    border-radius:20px;
+    padding:20px;
+}
+
+.products h3{
+    margin-bottom:10px;
+}
+
+/* Galería */
+.gallery{
+    display:grid;
+    grid-template-columns:repeat(2,1fr);
+    gap:12px;
+    margin-top:15px;
+}
+
+.gallery a{
+    position:relative;
+    display:block;
+}
+
+.gallery img{
+    width:100%;
+    height:130px;
+    object-fit:cover;
+    border-radius:12px;
+    box-shadow:0 4px 12px rgba(0,0,0,.4);
+    transition:.3s;
+}
+
+.gallery a::after{
+    content:"Cotizar";
+    position:absolute;
+    top:0;left:0;
+    width:100%;
+    height:100%;
+    background:rgba(0,0,0,.6);
+    color:white;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    font-weight:600;
+    border-radius:12px;
+    opacity:0;
+    transition:.3s;
+}
+
+.gallery a:hover img{
+    transform:scale(1.05);
+}
+
+.gallery a:hover::after{
+    opacity:1;
+}
+
+/* Dirección */
+.address{
+    margin-top:20px;
+    font-size:.9rem;
+    background:rgba(0,0,0,.35);
+    padding:15px;
+    border-radius:15px;
+}
+
+footer{
+    margin-top:15px;
+    font-size:.8rem;
+    opacity:.8;
+}
+
+/* Lightbox */
+.lightbox{
+    position:fixed;
+    inset:0;
+    display:none;
+    justify-content:center;
+    align-items:center;
+    background:rgba(0,0,0,0.85);
+    z-index:9999;
+    padding:20px;
+}
+.lightbox.open{display:flex}
+.lightbox-content{
+    position:relative;
+    max-width:1000px;
+    width:100%;
+    max-height:90vh;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    gap:12px;
+}
+.lightbox img{
+    max-width:100%;
+    max-height:80vh;
+    border-radius:12px;
+    box-shadow:0 10px 40px rgba(0,0,0,.6);
+    object-fit:contain;
+}
+.lightbox-caption{
+    color:#fff;
+    font-size:0.95rem;
+    text-align:center;
+}
+.lightbox-close{
+    position:absolute;
+    top:-10px;
+    right:-10px;
+    background:#fff;
+    border-radius:50%;
+    width:36px;
+    height:36px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    border:0;
+    cursor:pointer;
+    box-shadow:0 6px 18px rgba(0,0,0,.4);
+    font-size:1.2rem;
+}
+
+.lightbox-quote{
+    display:inline-block;
+    background:#25D366;
+    color:#fff;
+    padding:10px 18px;
+    border-radius:8px;
+    text-decoration:none;
+    font-weight:700;
+    box-shadow:0 6px 18px rgba(0,0,0,.4);
+}
+.lightbox-quote:hover{opacity:.95}
+</style>
+</head>
+<body>
+
+<!-- Fondo animado -->
+<div class="bubbles">
+  <span style="left:10%;animation-duration:12s"></span>
+  <span style="left:20%;animation-duration:18s"></span>
+  <span style="left:30%;animation-duration:15s"></span>
+  <span style="left:40%;animation-duration:20s"></span>
+  <span style="left:50%;animation-duration:14s"></span>
+  <span style="left:60%;animation-duration:22s"></span>
+  <span style="left:70%;animation-duration:17s"></span>
+  <span style="left:80%;animation-duration:19s"></span>
+  <span style="left:90%;animation-duration:16s"></span>
+</div>
+
+<div class="container">
+
+    <!-- Logo -->
+    <div class="logo"><img src="imagenes/logo.jpeg" alt="Logo"></div>
+
+    <h1>Prisma Sublim</h1>
+    <p class="subtitle">Diseño & Color</p>
+
+    <p>✨ Cotiza con nosotros fácilmente ✨</p>
+
+    <!-- Botones -->
+    <a href="https://wa.me/50586577303" target="_blank" class="link-btn whatsapp">
+        📱 WhatsApp
+    </a>
+
+    <a href="https://www.instagram.com/" target="_blank" class="link-btn instagram">
+        📸 Instagram
+    </a>
+
+    <a href="https://www.facebook.com/share/1GASDCBeoG/" target="_blank" class="link-btn facebook">
+        📘 Facebook
+    </a>
+
+    <!-- Productos -->
+    <div class="products">
+        <h3>🛍️ Nuestros Productos</h3>
+
+        <div class="gallery">
+
+                <img src="imagenes/tazaconcuchara.png" alt="Tazas de colores">
+            </a>
+
+                <img src="imagenes/tazamagica.png" alt="Tazas mágicas">
+            </a>
+
+            
+                <img src="imagenes/tazadecorazon.png" alt="Tazas corazón">
+            </a>
+
+                <img src="imagenes/termo.png" alt="Termos">
+            </a>
+
+                <img src="imagenes/camisetas.png" alt="Camisetas">
+            </a>
+
+           
+                <img src="imagenes/llaveros.png" alt="Llaveros">
+            </a>
+
+        </div>
+
+    </div>
+
+    <!-- Dirección -->
+    <div class="address">
+        📍 Chichigalpa, Reparto Modesto Palmal<br>
+        De la Bomba Nueva<br>
+        3 cuadras al Norte y 80 varas al Oeste
+    </div>
+
+    <footer>
+        © 2026 Prisma Sublim | Diseño & Color
+    </footer>
+
+</div>
+
+<!-- Lightbox -->
+<div id="lightbox" class="lightbox" aria-hidden="true">
+    <div class="lightbox-content">
+        <button class="lightbox-close" aria-label="Cerrar">&times;</button>
+        <img src="" alt="">
+        <div class="lightbox-caption"></div>
+        <a class="lightbox-quote" target="_blank" rel="noopener">Cotizar</a>
+    </div>
+</div>
+
+<script>
+(function(){
+    const gallery = Array.from(document.querySelectorAll('.gallery img'));
+    const lightbox = document.getElementById('lightbox');
+    const lbImg = lightbox.querySelector('img');
+    const lbCaption = lightbox.querySelector('.lightbox-caption');
+    const quoteBtn = lightbox.querySelector('.lightbox-quote');
+    const closeBtn = lightbox.querySelector('.lightbox-close');
+    let currentIndex = 0;
+
+    function open(index){
+        const img = gallery[index];
+        lbImg.src = img.src;
+        lbImg.alt = img.alt || '';
+        lbCaption.textContent = img.alt || '';
+        // set cotizar link: prefer the gallery item's parent anchor href if present
+        const parentLink = gallery[index].closest('a');
+        if(parentLink && parentLink.href){
+            quoteBtn.href = parentLink.href;
+        } else {
+            const phone = '50586577303';
+            const text = encodeURIComponent('Hola quiero cotizar ' + (img.alt || '')); 
+            quoteBtn.href = `https://wa.me/${phone}?text=${text}`;
+        }
+        lightbox.classList.add('open');
+        lightbox.setAttribute('aria-hidden','false');
+        currentIndex = index;
+    }
+
+    function close(){
+        lightbox.classList.remove('open');
+        lightbox.setAttribute('aria-hidden','true');
+        lbImg.src = '';
+    }
+
+    gallery.forEach((img, i) => {
+        img.style.cursor = 'zoom-in';
+        img.addEventListener('click', function(e){
+            e.preventDefault();
+            e.stopPropagation();
+            open(i);
+        });
+    });
+
+    closeBtn.addEventListener('click', close);
+    lightbox.addEventListener('click', function(e){
+        if(e.target === lightbox) close();
+    });
+
+    document.addEventListener('keydown', function(e){
+        if(lightbox.classList.contains('open')){
+            if(e.key === 'Escape') close();
+            if(e.key === 'ArrowRight'){
+                currentIndex = (currentIndex+1) % gallery.length;
+                open(currentIndex);
+            }
+            if(e.key === 'ArrowLeft'){
+                currentIndex = (currentIndex-1+gallery.length) % gallery.length;
+                open(currentIndex);
+            }
+        }
+    });
+})();
+</script>
+
+</body>
+</html>
